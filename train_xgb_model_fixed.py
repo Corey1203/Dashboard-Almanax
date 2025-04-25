@@ -1,4 +1,4 @@
-# train_xgb_model.py
+
 import pandas as pd
 import numpy as np
 import joblib
@@ -11,7 +11,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import mean_squared_error, r2_score
 
 # === Load Data ===
-df = pd.read_excel("/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/AI_Agent_Records_Final_10327.xlsx")
+df = pd.read_excel("AI_Agent_Records_Final_10327.xlsx")
 
 # === Define Features and Target ===
 X = df[[
@@ -26,9 +26,12 @@ y = df['risk_score']
 cat_cols = ['wallet_access_status', 'pii_handling_status']
 num_cols = [col for col in X.columns if col not in cat_cols]
 
-preprocessor = ColumnTransformer(transformers=[
-    ('cat', OneHotEncoder(drop='first', handle_unknown='ignore'), cat_cols)
-], remainder='passthrough')
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('cat', OneHotEncoder(drop='first', handle_unknown='ignore'), cat_cols)
+    ],
+    remainder='passthrough'
+)
 
 # === Model Pipeline ===
 xgb_model = Pipeline(steps=[
@@ -50,11 +53,4 @@ print("XGBoost Model Performance:")
 print(f"RMSE: {rmse:.4f}, R²: {r2:.4f}")
 
 # === Save Model ===
-joblib.dump(xgb_model, "/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/xgboost_model.pkl")
-
-# === SHAP Explainer ===
-X_transformed = xgb_model.named_steps['preprocessor'].fit_transform(X)
-explainer = shap.Explainer(xgb_model.named_steps['regressor'], X_transformed)
-joblib.dump(explainer, "/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/shap_explainer.pkl")
-
-print("/Users/linyunhao/Documents/GitHub/Dashboard-Almanax")
+joblib.dump(xgb_model, "xgboost_model.pkl")
