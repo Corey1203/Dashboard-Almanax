@@ -61,8 +61,8 @@ def assign_risk_level(score):
 df['risk_level'] = df['risk_score'].apply(assign_risk_level)
 
 # === Load Model and SHAP Explainer ===
-xgb_model = joblib.load("/Users/linyunhao/Desktop/UCB ana/Analytics Lab/GP/Almanax/Dashboard/xgboost_model.pkl")
-explainer = joblib.load("/Users/linyunhao/Desktop/UCB ana/Analytics Lab/GP/Almanax/Dashboard/shap_explainer.pkl")
+xgb_model = joblib.load("xgboost_model.pkl")
+explainer = joblib.load("shap_explainer.pkl")
 
 X = df[[
     'wallet_access_status', 'pii_handling_status', 'spending_limits',
