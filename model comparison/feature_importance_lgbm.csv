@@ -1,0 +1,31 @@
+feature,importance
+mh_wallet_check balance,136
+mh_pii_store PII,143
+mh_pii_encrypt PII,155
+mh_pii_share PII,160
+network_activity_status,191
+transaction_status,280
+NLE,316
+financial_advice,320
+NOA,390
+NL,409
+DIT,494
+NOD,520
+number_of_network_activity,642
+NA,712
+Avg_NLE,757
+CBO,870
+Avg_NL,914
+NF,956
+NOI,1039
+NUMPAR,1371
+WMC,1512
+Avg_NOI,1515
+NOS,1576
+Avg_NOS,1824
+Avg_NUMPAR,1843
+Avg_McCC,1869
+CLOC,1901
+SLOC,2062
+LLOC,2071
+spending_limits,2561
