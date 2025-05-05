@@ -69,7 +69,20 @@ import joblib
 xgb_model = joblib.load("xgboost_model.pkl")
 
 # Create SHAP explainer from model
-explainer = shap.TreeExplainer(xgb_model)
+
+# Safely extract XGBRegressor from pipeline
+if isinstance(xgb_model, xgboost.XGBRegressor):
+    model_to_explain = xgb_model
+elif hasattr(xgb_model, 'named_steps'):
+    print("Pipeline steps:", xgb_model.named_steps)  # Debug
+    model_to_explain = list(xgb_model.named_steps.values())[-1]
+    if not isinstance(model_to_explain, xgboost.XGBRegressor):
+        raise TypeError(f"Unsupported model type: {type(model_to_explain)}")
+else:
+    raise TypeError(f"Unsupported object type loaded: {type(xgb_model)}")
+
+explainer = shap.TreeExplainer(model_to_explain)
+
 
 X = df[[
     'wallet_access_status', 'pii_handling_status', 'spending_limits',
