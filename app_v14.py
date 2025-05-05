@@ -62,7 +62,17 @@ df['risk_level'] = df['risk_score'].apply(assign_risk_level)
 
 # === Load Model and SHAP Explainer ===
 xgb_model = joblib.load("xgboost_model.pkl")
-explainer = joblib.load("shap_explainer.pkl")
+import shap
+import joblib
+
+# Load trained pipeline model
+pipeline = joblib.load("xgboost_model.pkl")
+
+# Replace 'model' with the actual key if needed (from training script)
+xgb_model = pipeline.named_steps["model"]
+
+# Create TreeExplainer for XGBoost model
+explainer = shap.TreeExplainer(xgb_model)
 
 X = df[[
     'wallet_access_status', 'pii_handling_status', 'spending_limits',
