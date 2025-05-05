@@ -65,13 +65,10 @@ xgb_model = joblib.load("xgboost_model.pkl")
 import shap
 import joblib
 
-# Load trained pipeline model
-pipeline = joblib.load("xgboost_model.pkl")
+# Load raw XGBoost model directly
+xgb_model = joblib.load("xgboost_model.pkl")
 
-# Replace 'model' with the actual key if needed (from training script)
-xgb_model = pipeline.named_steps["model"]
-
-# Create TreeExplainer for XGBoost model
+# Create SHAP explainer from model
 explainer = shap.TreeExplainer(xgb_model)
 
 X = df[[
