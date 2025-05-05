@@ -75,7 +75,7 @@ xgb_model = joblib.load("xgboost_model.pkl")
 if isinstance(xgb_model, xgboost.XGBRegressor):
     model_to_explain = xgb_model
 elif hasattr(xgb_model, 'named_steps'):
-    print("Pipeline steps:", xgb_model.named_steps)  # Debug
+    print("Pipeline step names:", list(xgb_model.named_steps.keys()))  # Debug
     model_to_explain = list(xgb_model.named_steps.values())[-1]
     if not isinstance(model_to_explain, xgboost.XGBRegressor):
         raise TypeError(f"Unsupported model type: {type(model_to_explain)}")
