@@ -8,3 +8,4 @@ joblib
 matplotlib
 plotly
 openpyxl
+statsmodels>=0.14.0
