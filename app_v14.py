@@ -38,16 +38,16 @@ feature_mapping = {
 }
 
 # === Load Data ===
-df = pd.read_excel("AI_Agent_Records_Final_10327.xlsx")
+df = pd.read_excel("/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/AI_Agent_Records_Final_10327.xlsx")
 base_time = pd.Timestamp("2025-01-01")
 df['timestamp'] = [base_time + timedelta(hours=i) for i in range(len(df))]
 
-loss_tabnet = pd.read_csv(r"model comparison/tabnet_loss_curve.csv")
-loss_tabnet_pca = pd.read_csv(r"model comparison/tabnet_pca_loss_curve.csv")
-loss_tensorboard = pd.read_csv(r"model comparison/tensorboard_loss_curve.csv")
-pred_comparison = pd.read_csv(r"model comparison/model_prediction_comparison.csv")
-pred_comparison_pca = pd.read_csv(r"model comparison/model_prediction_comparison_pca.csv")
-actual_vs_pred = pd.read_csv(r"model comparison/actual_vs_predicted_risk_score.csv")
+loss_tabnet = pd.read_csv(r"/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/model comparison/tabnet_loss_curve.csv")
+loss_tabnet_pca = pd.read_csv(r"/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/model comparison/tabnet_pca_loss_curve.csv")
+loss_tensorboard = pd.read_csv(r"/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/model comparison/tensorboard_loss_curve.csv")
+pred_comparison = pd.read_csv(r"/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/model comparison/model_prediction_comparison.csv")
+pred_comparison_pca = pd.read_csv(r"/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/model comparison/model_prediction_comparison_pca.csv")
+actual_vs_pred = pd.read_csv(r"/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/model comparison/actual_vs_predicted_risk_score.csv")
 
 # Derive risk_level from risk_score
 def assign_risk_level(score):
@@ -61,8 +61,8 @@ def assign_risk_level(score):
 df['risk_level'] = df['risk_score'].apply(assign_risk_level)
 
 # === Load Model and SHAP Explainer ===
-xgb_model = joblib.load("xgboost_model.pkl")
-explainer = joblib.load("shap_explainer.pkl")
+xgb_model = joblib.load("/Users/linyunhao/Documents/GitHub/Dashboard-Almanax//xgboost_model.pkl")
+explainer = joblib.load("/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/shap_explainer.pkl")
 
 X = df[[
     'wallet_access_status', 'pii_handling_status', 'spending_limits',
@@ -346,12 +346,8 @@ if show_shap:
         st.pyplot(plt.gcf())
         plt.close()
 
-
-
-
-
 # Load Data
-base_path = "model comparison/"
+base_path = "/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/model comparison/"
 loss_tabnet = pd.read_csv(base_path + "tabnet_loss_curve.csv")
 loss_tabnet_pca = pd.read_csv(base_path + "tabnet_pca_loss_curve.csv")
 df_comparison = pd.read_csv(base_path + "model_comparison.csv")
@@ -359,7 +355,6 @@ df_comparison_pca = pd.read_csv(base_path + "model_comparison_pca.csv")
 df_tabtransformer = pd.read_csv(base_path + "actual_vs_predicted_tabtransformer.csv")
 df_fi_tabnet_pca = pd.read_csv(base_path + "feature_importance_tabnet_pca.csv")
 df_fi_lgbm = pd.read_csv(base_path + "feature_importance_lgbm.csv")
-
 
 mck_blue = "#00338D"
 
