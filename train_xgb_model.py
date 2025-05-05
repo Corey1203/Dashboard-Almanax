@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 import joblib
@@ -11,7 +10,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import mean_squared_error, r2_score
 
 # === Load Data ===
-df = pd.read_excel("AI_Agent_Records_Final_10327.xlsx")
+df = pd.read_excel("/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/AI_Agent_Records_Final_10327.xlsx")
 
 # === Define Features and Target ===
 X = df[[
@@ -53,4 +52,13 @@ print("XGBoost Model Performance:")
 print(f"RMSE: {rmse:.4f}, R²: {r2:.4f}")
 
 # === Save Model ===
-joblib.dump(xgb_model, "xgboost_model.pkl")
+joblib.dump(xgb_model, "/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/xgboost_model.pkl")
+
+import shap
+import joblib
+
+# Ensure model is trained and available as `model`
+X_transformed = xgb_model.named_steps['preprocessor'].fit_transform(X)
+explainer = shap.Explainer(xgb_model.named_steps['regressor'], X_transformed)
+joblib.dump(explainer, "/Users/linyunhao/Documents/GitHub/Dashboard-Almanax/shap_explainer.pkl")
+print("/Users/linyunhao/Documents/GitHub/Dashboard-Almanax")
