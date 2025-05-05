@@ -8,6 +8,7 @@ import joblib
 import matplotlib.pyplot as plt
 from datetime import timedelta
 from sklearn.feature_extraction.text import CountVectorizer
+import xgboost
 
 # Feature name mapping
 feature_mapping = {
