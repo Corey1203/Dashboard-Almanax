@@ -20,9 +20,3 @@ x_bounds = [(0, 10), (0, 10)]
 result = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=x_bounds, method='highs')
 
 # Check if the optimization was successful
-if result.success:
-    print("Optimal solution found:")
-    print("Values of variables:", result.x)
-    print("Optimal value of the objective function:", result.fun)
-else:
-    print("Optimization failed:", result.message)
