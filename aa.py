@@ -34,14 +34,3 @@ class BinaryTree:
             result.append(node.value)
             self.inorder_traversal(node.right, result)
         return result
-
-# Example usage
-if __name__ == "__main__":
-    tree = BinaryTree()
-    tree.insert(10)
-    tree.insert(5)
-    tree.insert(15)
-    tree.insert(3)
-    tree.insert(7)
-
-    print("Inorder Traversal:", tree.inorder_traversal(tree.root))
