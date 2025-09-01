@@ -26,11 +26,3 @@ class BinaryTree:
             else:
                 self._insert(current.right, value)
 
-    def inorder_traversal(self, node, result=None):
-        if result is None:
-            result = []
-        if node:
-            self.inorder_traversal(node.left, result)
-            result.append(node.value)
-            self.inorder_traversal(node.right, result)
-        return result
