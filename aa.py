@@ -20,9 +20,4 @@ class BinaryTree:
                 current.left = Node(value)
             else:
                 self._insert(current.left, value)
-        else:
-            if current.right is None:
-                current.right = Node(value)
-            else:
-                self._insert(current.right, value)
 
